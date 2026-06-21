@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hello Hayato</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="app-card">
+      <p class="eyebrow">First Web App</p>
+      <h1>Hello Hayato</h1>
+      <p class="description">3つのボタンで数字を増やしたり、減らしたり、0に戻したりできます。</p>
+
+      <section class="counter" aria-label="カウンター">
+        <p class="counter-label">現在の数字</p>
+        <p id="count" class="counter-number" aria-live="polite">0</p>
+        <p class="counter-help">この数字がボタン操作の結果です。</p>
+
+        <div class="button-grid" aria-label="カウンター操作">
+          <button id="decrementButton" class="button button-secondary" type="button">-1</button>
+          <button id="resetButton" class="button button-reset" type="button">リセット</button>
+          <button id="incrementButton" class="button button-primary" type="button">+1</button>
+        </div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
