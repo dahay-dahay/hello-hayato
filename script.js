@@ -3,6 +3,8 @@ const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBh
 
 const countElement = document.querySelector("#count");
 const statusMessage = document.querySelector("#statusMessage");
+const realtimeStatus = document.querySelector("#realtimeStatus");
+
 const decrementButton = document.querySelector("#decrementButton");
 const resetButton = document.querySelector("#resetButton");
 const incrementButton = document.querySelector("#incrementButton");
@@ -26,6 +28,11 @@ const setButtonsDisabled = (isDisabled) => {
   buttons.forEach((button) => {
     button.disabled = isDisabled;
   });
+};
+
+const updateRealtimeStatus = (message, type = "connecting") => {
+  realtimeStatus.textContent = message;
+  realtimeStatus.dataset.type = type;
 };
 
 const loadCount = async () => {
@@ -75,6 +82,39 @@ const changeCount = async (nextCount) => {
   await saveCount();
 };
 
+const subscribeToCountChanges = () => {
+  updateRealtimeStatus("● Realtime 接続中", "connecting");
+
+  supabaseClient
+    .channel("counters-id-1-count")
+    .on(
+      "postgres_changes",
+      {
+        event: "UPDATE",
+        schema: "public",
+        table: "counters",
+        filter: "id=eq.1",
+      },
+      (payload) => {
+        count = Number(payload.new.count);
+        updateCount();
+        updateRealtimeStatus("● Realtime 同期中", "connected");
+        updateStatus("別の画面で更新された数字を反映しました。", "success");
+      },
+    )
+    .subscribe((status) => {
+      if (status === "SUBSCRIBED") {
+        updateRealtimeStatus("● Realtime 接続済み", "connected");
+        return;
+      }
+
+      if (status === "CHANNEL_ERROR" || status === "TIMED_OUT") {
+        updateRealtimeStatus("● Realtime エラー", "error");
+        updateStatus("Realtime接続に失敗しました。SupabaseのRealtime設定を確認してください。", "error");
+      }
+    });
+};
+
 decrementButton.addEventListener("click", () => {
   changeCount(count - 1);
 });
@@ -88,3 +128,4 @@ incrementButton.addEventListener("click", () => {
 });
 
 loadCount();
+subscribeToCountChanges();

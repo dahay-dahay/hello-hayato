@@ -76,6 +76,26 @@ h1 {
   font-size: 0.95rem;
 }
 
+.realtime-status {
+  margin: 0;
+  padding: 6px 10px;
+  border-radius: 999px;
+  color: #92400e;
+  background: #fef3c7;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.realtime-status[data-type="connected"] {
+  color: #166534;
+  background: #dcfce7;
+}
+
+.realtime-status[data-type="error"] {
+  color: #991b1b;
+  background: #fee2e2;
+}
+
 .status-message {
   width: 100%;
   min-height: 2.8em;
