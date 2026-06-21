@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hello Hayato</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="app-card">
+      <p class="eyebrow">First Web App</p>
+      <h1>Hello Hayato</h1>
+      <p class="description">3つのボタンで数字を増やしたり、減らしたり、0に戻したりできます。</p>
+
+      <section class="counter" aria-label="カウンター">
+        <p class="counter-label">現在の数字</p>
+        <p id="count" class="counter-number" aria-live="polite">0</p>
+        <p class="counter-help">この数字がSupabaseに保存される値です。</p>
+        <p id="realtimeStatus" class="realtime-status" data-type="connecting">● Realtime 接続準備中</p>
+        <p id="statusMessage" class="status-message" role="status">Supabaseから数字を読み込みます。</p>
+
+        <div class="button-grid" aria-label="カウンター操作">
+          <button id="decrementButton" class="button button-secondary" type="button">-1</button>
+          <button id="resetButton" class="button button-reset" type="button">リセット</button>
+          <button id="incrementButton" class="button button-primary" type="button">+1</button>
+        </div>
+      </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
