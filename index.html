@@ -10,12 +10,18 @@
     <main class="app-card">
       <p class="eyebrow">First Web App</p>
       <h1>Hello Hayato 🚀</h1>
-      <p class="description">ボタンを押すと数字が 1 ずつ増えます。</p>
+      <p class="description">3つのボタンで数字を増やしたり、減らしたり、0に戻したりできます。</p>
 
       <section class="counter" aria-label="カウンター">
         <p class="counter-label">現在の数字</p>
-        <p id="count" class="counter-number">0</p>
-        <button id="incrementButton" type="button">+1</button>
+        <p id="count" class="counter-number" aria-live="polite">0</p>
+        <p class="counter-help">この数字がボタン操作の結果です。</p>
+
+        <div class="button-grid" aria-label="カウンター操作">
+          <button id="incrementButton" class="button button-primary" type="button">+1</button>
+          <button id="resetButton" class="button button-reset" type="button">リセット</button>
+          <button id="decrementButton" class="button button-secondary" type="button">-1</button>
+        </div>
       </section>
     </main>
 

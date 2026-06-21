@@ -14,7 +14,7 @@ body {
 }
 
 .app-card {
-  width: min(100%, 420px);
+  width: min(100%, 440px);
   padding: 32px 24px;
   text-align: center;
   border-radius: 28px;
@@ -41,6 +41,7 @@ h1 {
   margin: 16px 0 28px;
   color: #4b5563;
   font-size: 1rem;
+  line-height: 1.7;
 }
 
 .counter {
@@ -53,35 +54,80 @@ h1 {
   margin: 0;
   color: #6b7280;
   font-size: 0.95rem;
+  font-weight: 700;
 }
 
 .counter-number {
+  width: min(100%, 260px);
   margin: 0;
+  padding: 18px 24px;
   color: #111827;
-  font-size: clamp(3rem, 18vw, 5rem);
+  background: #f8fafc;
+  border: 3px solid #bfdbfe;
+  border-radius: 24px;
+  font-size: clamp(3.4rem, 20vw, 5.5rem);
   font-weight: 800;
   line-height: 1;
 }
 
-button {
-  width: 100%;
-  max-width: 260px;
-  padding: 16px 24px;
-  border: 0;
-  border-radius: 999px;
-  color: white;
-  background: #2563eb;
-  font-size: 1.25rem;
-  font-weight: 700;
-  cursor: pointer;
-  box-shadow: 0 12px 24px rgba(37, 99, 235, 0.28);
+.counter-help {
+  margin: 0 0 8px;
+  color: #4b5563;
+  font-size: 0.95rem;
 }
 
-button:hover {
+.button-grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+.button {
+  width: 100%;
+  min-height: 56px;
+  padding: 16px 20px;
+  border: 0;
+  border-radius: 18px;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 12px 24px rgba(31, 41, 55, 0.16);
+}
+
+.button-primary {
+  background: #2563eb;
+}
+
+.button-primary:hover {
   background: #1d4ed8;
 }
 
-button:focus-visible {
+.button-secondary {
+  background: #f97316;
+}
+
+.button-secondary:hover {
+  background: #ea580c;
+}
+
+.button-reset {
+  color: #1f2937;
+  background: #e5e7eb;
+}
+
+.button-reset:hover {
+  background: #d1d5db;
+}
+
+.button:focus-visible {
   outline: 4px solid #93c5fd;
   outline-offset: 4px;
+}
+
+@media (min-width: 420px) {
+  .button-grid {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
 }
